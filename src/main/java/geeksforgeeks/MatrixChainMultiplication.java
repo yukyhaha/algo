@@ -35,8 +35,20 @@ public class MatrixChainMultiplication {
 		return minRes;
 	}
 	
-	public int getResutlsDynamicTab(){
-		for(int )
+	public int getResutlsDynamicTab(int[] matrix){
+		int len = matrix.length;
+		int dp[][] = new int[len - 1][len - 1];
+		
+		for(int i = 2; i < len; i ++){
+			for(int j = 0; j < len - i; j ++){
+				int m = Integer.MAX_VALUE;
+				for(int k = j; k < j + i - 1; k ++){
+					 m = Math.min(m, dp[j][k] + dp[k + 1][j + i - 1] + matrix[j] * matrix[k + 1] * matrix[j + i]);
+				}
+				dp[j][j + i - 1] = m;
+			}
+		}
+		return dp[0][len - 2];
 	}
 	
 	
@@ -44,6 +56,7 @@ public class MatrixChainMultiplication {
 		MatrixChainMultiplication test = new MatrixChainMultiplication();
 		int[] matrix =   {40, 20, 30, 10, 30} ;
 		int[][] memTable = new int[matrix.length - 1][matrix.length - 1];
-		System.out.println(test.getResultsDynamic(matrix, 0, matrix.length - 2, memTable));
+		System.out.println(test.getResultsDynamicMem(matrix, 0, matrix.length - 2, memTable));
+		System.out.println(test.getResutlsDynamicTab(matrix));
 	}
 }
