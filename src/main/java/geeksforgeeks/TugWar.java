@@ -67,7 +67,7 @@ public class TugWar {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TugWar test = new TugWar();
-		int[] nums = {1,20, 2, 5, 4, 10, 5};
+		int[] nums = {23, 45, -34, 12, 0, 98, -99, 4, 189, -1, 4};
 		test.doTugofWar(nums);
 	}
 
