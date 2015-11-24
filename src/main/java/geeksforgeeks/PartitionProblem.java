@@ -46,7 +46,7 @@ public class PartitionProblem {
 			dp[0][i] = true;
 	}
 		
-		for(int i = 0; i <= sum/2; i ++){
+		for(int i = 1; i <= sum/2; i ++){
 			for(int j = 1; j <= n; j ++){
 				
 				dp[i][j] = dp[i][j - 1];
@@ -61,7 +61,7 @@ public class PartitionProblem {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PartitionProblem test = new PartitionProblem();
-		int[] arr =  {3, 1, 1, 2, 2, 1};
+		int[] arr =  {100, 50, 50};
 		System.out.println(test.hasSumDynamic(arr));
 		System.out.println(test.hasSumRecursive(arr));
 	}
