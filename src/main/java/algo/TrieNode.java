@@ -1,4 +1,4 @@
-package main.java.careercup;
+package main.java.algo;
 
 public class TrieNode {
 	public TrieNode[] children =  new TrieNode[26];

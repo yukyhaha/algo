@@ -1,4 +1,4 @@
-package main.java.geeksforgeeks;
+package main.java.algo;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

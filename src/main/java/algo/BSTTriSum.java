@@ -1,4 +1,4 @@
-package main.java.geeksforgeeks;
+package main.java.algo;
 
 /*
  * http://www.geeksforgeeks.org/find-if-there-is-a-triplet-in-bst-that-adds-to-0/

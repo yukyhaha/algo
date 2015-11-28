@@ -1,4 +1,4 @@
-package main.java.careercup;
+package main.java.algo;
 
 import java.util.Stack;
 

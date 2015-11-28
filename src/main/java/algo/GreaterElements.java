@@ -1,4 +1,4 @@
-package main.java.careercup;
+package main.java.algo;
 
 /*
  * http://www.careercup.com/question?id=5631660689195008
