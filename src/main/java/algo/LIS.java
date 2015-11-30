@@ -33,26 +33,65 @@ public class LIS {
 	
 	public int doLISDynamic(int[] arr){
 		int len = arr.length;
-		if(len == 0)
-			return 0;
-		int res = 1;
+		int maxLen = 0;		
+		int[] dp = new int[len];
 		for(int i = 0; i < len; i ++){
-			int maxLen = 1;
-			for(int j = i + 1; j < len; j ++){
-				if(arr[j] >= arr[i]){
-					maxLen ++;
+			dp[i] = 1;
+		}
+		for(int i = 1; i < len; i ++){
+			for(int j = 0; j < i; j ++){
+				if(dp[j] + 1 > dp[i] && arr[i] >= arr[j]){
+					dp[i] = dp[j] + 1;
 				}
 			}
-			res = Math.max(res, maxLen);
+			maxLen = Math.max(maxLen, dp[i]);
 		}
-		return res;
+		
+		
+		return maxLen;
+	}
+	
+	public int getCeil(int[] tailTable, int num, int len){
+		int l = 0, r = len;
+		
+		while(r - l > 1){
+			int mid = l + (r - l)/2;
+
+			if(tailTable[mid] < num){
+				l = mid;
+			}else{
+				r = mid;
+			}
+		}
+		return r;
+		
+	}
+	
+	public int doLISnlogn(int[] arr){
+		int n = arr.length;
+		int[] tailTable = new int[n];
+		tailTable[0] = arr[0];
+		int len = 1;
+		for(int i = 1; i < n; i ++){
+			if(arr[i] < tailTable[0]){
+				tailTable[0] = arr[i];
+			}else if(arr[i] >= tailTable[len - 1]){
+				tailTable[len] = arr[i];
+				len ++;
+			}else{
+				tailTable[getCeil(tailTable, arr[i], len - 1)] = arr[i];
+			}
+		}
+		
+		return len;
 	}
 	
 	
 	public static void main(String args[]){
 		LIS lis = new LIS();
-		int[] arr =  { 10, 22, 9, 33, 21, 50, 41, 60 };
+		int[] arr =  { 2, 5, 3, 7, 11, 8, 10, 13, 6 };
 		System.out.println(lis.doLISDynamic(arr));
+		System.out.println(lis.doLISnlogn(arr));
 	}
 	
 	
