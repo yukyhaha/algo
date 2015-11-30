@@ -38,16 +38,15 @@ public class HeapSort {
 		}
 	}
 	
-	public void createHeap(int[] arr){
-		int len = arr.length;
-		for(int i = (len - 2) / 2; i >=0; i --){
-			heapify(arr, len, i);
+	public void createHeap(int[] arr, int size){
+		for(int i = (size - 2) / 2; i >=0; i --){
+			heapify(arr, size, i);
 		}		
 	}
 	
 	public void sort(int[] arr){
 		int len = arr.length;
-		createHeap(arr);
+		createHeap(arr, len);
 		
 		for(int i = len - 1; i > 0; i --){
 			swap(arr, i, 0);
@@ -59,9 +58,23 @@ public class HeapSort {
 		}
 	}
 	
+	public void insertTest(int[] arr, int j){
+		int len = arr.length;
+		createHeap(arr, 4);
+		System.out.println("before insert:");
+		for(int i = 0; i < 4; i ++){
+			System.out.println(arr[i]);
+		}
+		heapifyUp(arr, j);
+		System.out.println("after insert:");
+		for(int i = 0; i < len; i ++){
+			System.out.println(arr[i]);
+		}
+	}
+	
 	public void kthLargest(int[] arr, int k){
 		int len = arr.length;
-		createHeap(arr);
+		createHeap(arr, len);
 		for(int i = len - 1; i >= len - k; i --){
 			swap(arr, i, 0);
 			heapify(arr, i, 0);
@@ -72,8 +85,7 @@ public class HeapSort {
 	public static void main(String args[]){
 		HeapSort t = new HeapSort();
 		int arr[] = {7, 3, 2, 5, 2};
-		t.sort(arr);
-		t.kthLargest(arr, 4);
+		t.insertTest(arr, 4);
 	}
 	
 
