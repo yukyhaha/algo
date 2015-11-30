@@ -12,6 +12,15 @@ public class HeapSort {
 		arr[i2] = tmp;
 	}
 	
+	public void heapifyUp(int[] arr, int i){
+		int parentIndex = (arr[i] - 1) / 2;
+		
+		if(parentIndex >=0 && arr[parentIndex] < i){
+			swap(arr, i, parentIndex);
+			heapifyUp(arr, parentIndex);
+		}
+	}
+	
 	public void heapify(int[] arr, int size, int i){
 		int l = i * 2 + 1;
 		int r = i * 2 + 2;
