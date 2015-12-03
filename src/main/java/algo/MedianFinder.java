@@ -141,7 +141,7 @@ public class MedianFinder {
     			extractMinHeap();
     			insertToMinHeap(num);
     		}else{
-    			insertToMinHeap(num);
+    			insertToMaxHeap(num);
     		}
     	}
         
@@ -179,17 +179,17 @@ public class MedianFinder {
    public static void main(String args[]){
 	   MedianFinder t = new MedianFinder();
 	  	   
-	   t.addNum(-1);
+	   t.addNum(12);
 	   System.out.println(t.findMedian());
-	   t.addNum(-2);
+	   t.addNum(10);
 	   System.out.println(t.findMedian());
-	   t.addNum(-3);
+	   t.addNum(13);
 	   System.out.println(t.findMedian());
-	   t.addNum(-4);
+	   t.addNum(11);
 	   System.out.println(t.findMedian());
-	   t.addNum(-5);
+	   t.addNum(5);
 	   System.out.println(t.findMedian());
-/*	   t.addNum(15);
+	   t.addNum(15);
 	   System.out.println(t.findMedian());
 	   t.addNum(1);
 	   System.out.println(t.findMedian());
@@ -220,7 +220,7 @@ public class MedianFinder {
 	   t.addNum(12);
 	   System.out.println(t.findMedian());
 	   t.addNum(0);
-	   System.out.println(t.findMedian());*/
+	   System.out.println(t.findMedian());
 
    }
 };
