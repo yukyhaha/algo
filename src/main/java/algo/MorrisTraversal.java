@@ -13,7 +13,9 @@ public class MorrisTraversal {
 	 * */
 	public void recoverBinaryTree(TreeNode root){
 		TreeNode currNode = root;
-		
+		TreeNode firstNode = null;
+		TreeNode secondNode = null;
+		TreeNode lastNode = null;
 		while(currNode != null){
 			if(currNode.left != null){	
 				TreeNode preNode = currNode.left;
@@ -23,18 +25,59 @@ public class MorrisTraversal {
 				
 				if(preNode.right == null){
 					preNode.right = currNode;
-				}
-				
-				if(preNode.right == currNode){
-					System.out.println(currNode.val);
+					currNode = currNode.left;
+				}else if(preNode.right == currNode){
+					//System.out.println(currNode.val);
+					if(lastNode != null){
+						if(firstNode == null){
+							if(currNode.val < lastNode.val){
+								firstNode = lastNode;
+								secondNode = currNode;
+							}
+						}
+						
+						if(secondNode != null && currNode.val < secondNode.val){
+							secondNode = currNode;
+						}
+					
+					}
+					
+					lastNode = currNode;
 					preNode.right = null;
 					currNode = currNode.right;
 				}
 			}else{
-				System.out.println(currNode.val);
-				currNode = currNode.right;
+				//System.out.println(currNode.val);
+				if(lastNode != null){
+					if(firstNode == null){
+						if(currNode.val < lastNode.val){
+							firstNode = lastNode;
+							secondNode = currNode;
+						}
+					}
+					
+					if(secondNode != null && currNode.val < secondNode.val){
+						secondNode = currNode;
+					}
+				
+				}
+				lastNode = currNode;
+				currNode = currNode.right;				
 			}
 		}
+		
+		int tmp = firstNode.val;
+		firstNode.val = secondNode.val;
+		secondNode.val = tmp;
+		printTree(root);
+	}
+	
+	public void printTree(TreeNode root){
+		if(root == null)
+			return;
+		printTree(root.left);
+		System.out.println(root.val);
+		printTree(root.right);
 	}
 
 
@@ -43,9 +86,9 @@ public class MorrisTraversal {
 		MorrisTraversal t = new MorrisTraversal();
 		TreeNode root =  new TreeNode(15);
 		root.left = new TreeNode(10);
-		root.right = new TreeNode(20);
+		root.right = new TreeNode(12);
 		root.left.left = new TreeNode(8);
-		root.left.right = new TreeNode(12);
+		root.left.right = new TreeNode(20);
 		root.right.left = new TreeNode(16);
 		root.right.right = new TreeNode(25);
 		t.recoverBinaryTree(root);
