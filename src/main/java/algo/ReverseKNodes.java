@@ -1,5 +1,7 @@
 package main.java.algo;
-
+/*
+ * reverse alternative k nodes
+ * */
 public class ReverseKNodes {
 
 	public ReverseKNodes() {
@@ -20,9 +22,41 @@ public class ReverseKNodes {
 			n = n.next;
 		}
 		n.next = head;
-		head.next = null;		
+		head.next = null;
 		return newHead;
+	}
+	
+	public Node reverseNoRecursive(Node head){
+		Node p1 = head;
+		Node p2 = null;
+		Node p3 = null;
+		if(p1.next != null){
+			p2 = p1.next;
+		}else{
+			return p1;
+		}
 		
+		if(p2.next != null){
+			p3 = p2.next;
+		}else{
+			p2.next = p1;
+			p1.next = null;
+			return p2;
+		}
+		
+		while(p2 != null){
+			p2.next = p1;
+			if(p1 == head){
+				p1.next = null;
+			}
+			p1 = p2;
+			p2 = p3;
+			if(p3 != null){
+				p3 = p3.next;
+			}
+		}
+		
+		return p1;
 	}
 	
 	public Node reverseNodesHelper(Node head, int k, boolean flip){
@@ -72,7 +106,7 @@ public class ReverseKNodes {
 		head.next.next.next = new Node(4);
 		head.next.next.next.next = new Node(5);
 		head.next.next.next.next.next = new Node(6);
-		Node n = test.reverseNodes(head, 1);
+		Node n = test.reverseNoRecursive(head);
 		while(n != null){
 			System.out.println(n.value);
 			n = n.next;
