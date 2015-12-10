@@ -35,28 +35,24 @@ public class Fibonacii {
 	}
 	
 	public int memDpHelper(int[] dp, int n){
-		if(n == 1){
-			return 0;
+
+		if(dp[n - 1] == -1){
+			if(n == 1){
+				dp[n - 1] = 0;
+			}else if(n == 2){
+				dp[n - 1] = 1;
+			}else
+				dp[n - 1] = memDpHelper(dp, n - 1) + memDpHelper(dp, n - 2);
+				
 		}
-		
-		if(n == 2){
-			return 1;
-		}
-		int f1 = dp[n - 2];
-		int f2 = dp[n - 3];
-		if(f1 == -1){
-			f1 = memDpHelper(dp, n - 1);
-		}
-		if(f2 == -1){
-			f2 = memDpHelper(dp, n - 2);
-		}
-		return f1 + f2;		
+
+		return dp[n - 1];		
 	}
 	
 	public static void main(String args[]){
 		Fibonacii f = new Fibonacii();
-		System.out.println(f.recursive(5));
-		System.out.println(f.iterate(5));
-		System.out.println(f.memDp(5));
+		System.out.println(f.recursive(10));
+		System.out.println(f.iterate(10));
+		System.out.println(f.memDp(10));
 	}
 }
