@@ -1,43 +1,53 @@
-public Class Reservation{
-	public int people;
-	public Date time;
-	public String name;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
-	public Reservation(int name, Date time, String people){
+class People{
+	private String firstName;
+	private String lastName;
+	private int phoneNumber;
+	
+	public People(String firstName, String lastName, int phoneNumber){}
+	
+	/*setter/getter*/
+}
+
+class Reservation{
+	private People people;
+	private String time;
+	private int partyNum;
+
+	public Reservation(People people, String time, int partyNum){
 		this.people = people;
 		this.time = time;
-		this.name = name;
+		this.partyNum = partyNum;
 	}
 
-
+	/*getter/setter*/
 
 }
 
 public class ReservationSys{
 	
-	private HashTable<String,ArrayList<Reservation>> hashTable = new HashTable<String, ArrayList<Reservation>>();
+	private Hashtable<Integer,Reservation> hashTable = new Hashtable<Integer, Reservation>();
 
-	public void addReservation(int name, Date time, String people){
-
-		ArrayList<Reservaton> list = new ArrayList<Reservation>();
-		list.add(new Reservation(name, time, people));
-		hashTable.add(name, list);
+	
+	
+	public void addReservation(String firstName, String lastName, int phoneNumber, String time, int partyNum){
+		People people = new People(firstName, lastName, phoneNumber);
+		Reservation res = new Reservation(people, time, partyNum);
+		hashTable.put(phoneNumber, res);
 	}
 
 	public void delReservation(Reservation reservation){
-			ArrayList<Reservaton> list = hashTable.get(reservation.name);
-			int size = list.size();
-			for(int i = 0; i < size; i ++){
-				Reservation res = list.get(i);
-				if(res.time.equals(reservation.time) && res.people.equals(reservation.people)){
-					list.remove(i);
-				}
-			}
-				
+		int phoneNum = reservation.getPoeple().getPhonenum();
+		if(hashTable.containsKey(phoneNum))
+			hashTable.remove(phoneNum);
+
 	}
 
-	public ArrayList<Reservaton> getReservation(String name){
-		return hashTable.get(name);
+	public Reservation getReservation(int phoneNum){
+		if(hashTable.containsKey(phoneNum))
+			hashTable.remove(phoneNum);
 	}
 
 }
