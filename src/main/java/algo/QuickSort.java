@@ -24,7 +24,7 @@ public class QuickSort {
 		int p = arr[r];
 		int k = l - 1;
 		for(int i = l; i < r; i ++){
-			if(arr[i] >= p){
+			if(arr[i] < p){
 				k ++;
 				swap(arr, k, i);
 			}			
