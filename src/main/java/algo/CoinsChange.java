@@ -23,11 +23,25 @@ public class CoinsChange {
 			}
 		}
 		return dp[n][len - 1];
-	}		
+	}
+	
+	public int changeWaysRecursive(int[] s, int n, int m){
+		if(n == 0){
+			return 1;
+		}
+		if(n < 0){
+			return 0;
+		}
+		if(m <= 0){
+			return 0;
+		}
+		
+		return changeWaysRecursive(s, n - s[m - 1], m) + changeWaysRecursive(s, n, m - 1);
+	}
 
 	public static void main(String args[]){
 		CoinsChange t = new CoinsChange();
 		int[] s= {1, 2, 3};
-		System.out.println(t.changeWays(s, 4));
+		System.out.println(t.changeWaysRecursive(s, 4, s.length));
 	}
 }
